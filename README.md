@@ -1,25 +1,35 @@
 # Ember-cli-focus-input
 
-This README outlines the details of collaborating on this Ember addon.
+[![Build Status][]](https://travis-ci.org/williamsbdev/ember-cli-focus-input)
+[![NPM Downlaads](https://img.shields.io/npm/dm/ember-cli-focus-input.svg)](https://www.npmjs.org/package/ember-cli-focus-input)
+
+## Description
+
+Ember-cli-focus-input is a set of ember components that provide autofocus (the
+first input of your form/page).
 
 ## Installation
 
-* `git clone` this repository
-* `npm install`
-* `bower install`
+    # Install via npm
+    $ npm install ember-cli-focus-input --save-dev
+    # make ember-cli fetch interal dependencies
+    $ ember g ember-cli-focus-input
 
-## Running
+## Focus Input
 
-* `ember server`
-* Visit your app at http://localhost:4200.
+    {{focus-input value=model.field class="foo"}}
+
+## Focus Button
+
+    {{focus-button value=model.buttonField class="bar"}}
 
 ## Running Tests
 
-* `ember test`
-* `ember test --server`
+    ember test
+    ember test --server
 
-## Building
+## License
 
-* `ember build`
+Copyright © 2015 Brandon Williams http://williamsbdev.com
 
-For more information on using ember-cli, visit [http://www.ember-cli.com/](http://www.ember-cli.com/).
+Licensed under the MIT License
