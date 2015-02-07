@@ -1,6 +1,6 @@
 # Ember-cli-focus-input
 
-[![Build Status][]](https://travis-ci.org/williamsbdev/ember-cli-focus-input)
+[![Build Status](https://travis-ci.org/williamsbdev/ember-cli-focus-input.svg?branch=master)](https://travis-ci.org/williamsbdev/ember-cli-focus-input)
 [![NPM Downlaads](https://img.shields.io/npm/dm/ember-cli-focus-input.svg)](https://www.npmjs.org/package/ember-cli-focus-input)
 
 ## Description
