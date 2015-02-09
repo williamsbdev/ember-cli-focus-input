@@ -27,6 +27,10 @@ first input of your form/page).
 
     ember test
     ember test --server
+    
+## Issues/Contributions
+
+PRs are welcome!
 
 ## License
 
