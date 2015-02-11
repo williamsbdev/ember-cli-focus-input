@@ -25,9 +25,11 @@ first input of your form/page).
 
 ## Running Tests
 
+    npm install
+    bower install
     ember test
     ember test --server
-    
+
 ## Issues/Contributions
 
 PRs are welcome!
