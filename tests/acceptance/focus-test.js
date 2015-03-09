@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import { test, module } from 'qunit';
 import startApp from '../helpers/start-app';
 import {isFocused} from 'ember-cli-test-helpers/tests/helpers/input';
 
@@ -18,32 +19,32 @@ module('Acceptance: Focus', {
     }
 });
 
-test('First field should have focus', function() {
+test('First field should have focus', function(assert) {
     visit('/input');
     andThen(function() {
-        equal(currentURL(), '/input');
+        assert.equal(currentURL(), '/input');
         isFocused(FOCUSED_INPUT);
     });
 });
 
-test('focused field should have value set and selected', function() {
+test('focused field should have value set and selected', function(assert) {
     var selected = false;
     $.prototype.select = function() {
         selected = true;
     };
     visit('/input');
     andThen(function() {
-        equal(currentURL(), '/input');
-        equal(find(FOCUSED_INPUT).val(), 'foo');
-        equal(selected, true);
+        assert.equal(currentURL(), '/input');
+        assert.equal(find(FOCUSED_INPUT).val(), 'foo');
+        assert.equal(selected, true);
     });
 });
 
-test('First button should have focus', function() {
+test('First button should have focus', function(assert) {
     visit('/button');
     andThen(function() {
-        equal(currentURL(), '/button');
+        assert.equal(currentURL(), '/button');
         isFocused(FOCUSED_BUTTON);
-        equal(find(FOCUSED_BUTTON).attr('type'), 'submit');
+        assert.equal(find(FOCUSED_BUTTON).attr('type'), 'submit');
     });
 });
