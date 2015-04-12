@@ -1,9 +1,13 @@
 import Ember from 'ember';
 
 var FocusInput = Ember.TextField.extend({
+    attributeBindings: ["select"],
     didInsertElement: function() {
         this.$().focus();
-        this.$().select();
+        var select = this.get("select");
+        if(select !== "false") {
+            this.$().select();
+        }
     }
 });
 

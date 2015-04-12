@@ -6,6 +6,7 @@ import {isFocused} from 'ember-cli-test-helpers/tests/helpers/input';
 var application, originalSelect;
 
 var FOCUSED_INPUT = 'input.focused-input';
+var UNSELECTED_INPUT = 'input.focused-input-not-selected';
 var FOCUSED_BUTTON = 'button.focused-button';
 
 module('Acceptance: Focus', {
@@ -46,5 +47,31 @@ test('First button should have focus', function(assert) {
         assert.equal(currentURL(), '/button');
         isFocused(FOCUSED_BUTTON);
         assert.equal(find(FOCUSED_BUTTON).attr('type'), 'submit');
+    });
+});
+
+test('focused field can be configured to not select the value on focus', function(assert) {
+    var selected = false;
+    $.prototype.select = function() {
+        selected = true;
+    };
+    visit('/unselected');
+    andThen(function() {
+        assert.equal(currentURL(), '/unselected');
+        assert.equal(find(UNSELECTED_INPUT).val(), 'foo');
+        assert.equal(selected, false);
+    });
+});
+
+test('focused field will have any className attribute set in the template', function(assert) {
+    visit('/unselected');
+    andThen(function() {
+        assert.equal(currentURL(), '/unselected');
+        assert.ok(find(UNSELECTED_INPUT).hasClass('watwat'));
+    });
+    visit('/input');
+    andThen(function() {
+        assert.equal(currentURL(), '/input');
+        assert.ok(find(FOCUSED_INPUT).hasClass('yoyo'));
     });
 });
