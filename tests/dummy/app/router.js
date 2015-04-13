@@ -7,6 +7,7 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
     this.route("input", {path: "/input"});
+    this.route("unselected", {path: "/unselected"});
     this.route("button", {path: "/button"});
 });
 

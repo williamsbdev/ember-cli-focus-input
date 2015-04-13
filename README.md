@@ -19,6 +19,10 @@ first input of your form/page).
 
     {{focus-input value=model.field class="foo"}}
 
+By default the input will be focused and have the content selected. If you prefer not to have the text selected/highlighted configure it like so.
+
+    {{focus-input value=model.field class="foo" select="false"}}
+
 ## Focus Button
 
     {{focus-button value=model.buttonField class="bar"}}
