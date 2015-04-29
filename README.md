@@ -12,8 +12,6 @@ first input of your form/page).
 
     # Install via npm
     $ npm install ember-cli-focus-input --save-dev
-    # make ember-cli fetch interal dependencies
-    $ ember g ember-cli-focus-input
 
 ## Focus Input
 
