@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import { test, module } from 'qunit';
 import startApp from '../helpers/start-app';
-import {isFocused} from 'ember-cli-test-helpers/tests/helpers/input';
+import {isFocused} from 'dummy/tests/helpers/input';
 
 var application, originalSelect;
 
