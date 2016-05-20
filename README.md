@@ -32,13 +32,9 @@ By default the input will be focused and have the content selected. If you prefe
     ember test
     ember test --server
 
-## Issues/Contributions
-
-PRs are welcome!
-
 ## License
 
-Copyright © 2015 Brandon Williams http://williamsbdev.com
+Copyright © 2016 Brandon Williams http://williamsbdev.com
 
 Licensed under the MIT License
 
