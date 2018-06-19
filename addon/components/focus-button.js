@@ -1,11 +1,9 @@
-import Ember from "ember";
+import Component from '@ember/component';
 
-var FocusButton = Ember.Component.extend({
+export default Component.extend({
     tagName: "button",
     attributeBindings: ["type"],
     didInsertElement: function() {
         this.$().focus();
     }
 });
-
-export default FocusButton;
