@@ -1,77 +1,71 @@
-import Ember from 'ember';
-import { test, module } from 'qunit';
-import startApp from '../helpers/start-app';
-import {isFocused} from 'dummy/tests/helpers/input';
+import {setupApplicationTest} from 'ember-qunit';
+import {test, module} from 'qunit';
+import {currentURL, visit} from '@ember/test-helpers';
+import $ from 'jquery';
 
-var application, originalSelect;
+let originalSelect;
 
-var FOCUSED_INPUT = 'input.focused-input';
-var UNSELECTED_INPUT = 'input.focused-input-not-selected';
-var FOCUSED_BUTTON = 'button.focused-button';
+const FOCUSED_INPUT = 'input.focused-input';
+const UNSELECTED_INPUT = 'input.focused-input-not-selected';
+const FOCUSED_BUTTON = 'button.focused-button';
 
-module('Acceptance: Focus', {
-    setup: function() {
-        originalSelect = $.prototype.select;
-        application = startApp();
-    },
-    teardown: function() {
-        $.prototype.select = originalSelect;
-        Ember.run(application, 'destroy');
-    }
-});
+function isFocused(selector) {
+  let focused = $(document.activeElement);
+  let element = $(selector);
+  return element.is(":focus") || element.is(focused);
+}
 
-test('First field should have focus', function(assert) {
-    visit('/input');
-    andThen(function() {
-        assert.equal(currentURL(), '/input');
-        isFocused(FOCUSED_INPUT);
-    });
-});
+module('Acceptance: Focus', function (hooks) {
+  setupApplicationTest(hooks);
 
-test('focused field should have value set and selected', function(assert) {
-    var selected = false;
-    $.prototype.select = function() {
-        selected = true;
+  hooks.beforeEach(function () {
+    originalSelect = $.prototype.select;
+  });
+  hooks.afterEach(function () {
+    $.prototype.select = originalSelect;
+  });
+
+  test('First field should have focus', async function (assert) {
+    await visit('/input');
+    assert.equal(currentURL(), '/input');
+    assert.ok(isFocused(FOCUSED_INPUT));
+  });
+
+  test('focused field should have value set and selected', async function (assert) {
+    let selected = false;
+    $.prototype.select = function () {
+      selected = true;
     };
-    visit('/input');
-    andThen(function() {
-        assert.equal(currentURL(), '/input');
-        assert.equal(find(FOCUSED_INPUT).val(), 'foo');
-        assert.equal(selected, true);
-    });
-});
+    await visit('/input');
+    assert.equal(currentURL(), '/input');
+    assert.equal($(FOCUSED_INPUT).val(), 'foo');
+    assert.equal(selected, true);
+  });
 
-test('First button should have focus', function(assert) {
-    visit('/button');
-    andThen(function() {
-        assert.equal(currentURL(), '/button');
-        isFocused(FOCUSED_BUTTON);
-        assert.equal(find(FOCUSED_BUTTON).attr('type'), 'submit');
-    });
-});
+  test('First button should have focus', async function (assert) {
+    await visit('/button');
+    assert.equal(currentURL(), '/button');
+    assert.ok(isFocused(FOCUSED_BUTTON));
+    assert.equal($(FOCUSED_BUTTON).attr('type'), 'submit');
+  });
 
-test('focused field can be configured to not select the value on focus', function(assert) {
-    var selected = false;
-    $.prototype.select = function() {
-        selected = true;
+  test('focused field can be configured to not select the value on focus', async function (assert) {
+    let selected = false;
+    $.prototype.select = function () {
+      selected = true;
     };
-    visit('/unselected');
-    andThen(function() {
-        assert.equal(currentURL(), '/unselected');
-        assert.equal(find(UNSELECTED_INPUT).val(), 'foo');
-        assert.equal(selected, false);
-    });
-});
+    await visit('/unselected');
+    assert.equal(currentURL(), '/unselected');
+    assert.equal($(UNSELECTED_INPUT).val(), 'foo');
+    assert.equal(selected, false);
+  });
 
-test('focused field will have any className attribute set in the template', function(assert) {
-    visit('/unselected');
-    andThen(function() {
-        assert.equal(currentURL(), '/unselected');
-        assert.ok(find(UNSELECTED_INPUT).hasClass('watwat'));
-    });
-    visit('/input');
-    andThen(function() {
-        assert.equal(currentURL(), '/input');
-        assert.ok(find(FOCUSED_INPUT).hasClass('yoyo'));
-    });
+  test('focused field will have any className attribute set in the template', async function (assert) {
+    await visit('/unselected');
+    assert.equal(currentURL(), '/unselected');
+    assert.ok($(UNSELECTED_INPUT).hasClass('watwat'));
+    await visit('/input');
+    assert.equal(currentURL(), '/input');
+    assert.ok($(FOCUSED_INPUT).hasClass('yoyo'));
+  });
 });
