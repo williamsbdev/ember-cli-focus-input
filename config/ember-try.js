@@ -1,16 +1,76 @@
 'use strict';
 
+const getChannelURL = require('ember-source-channel-url');
+
 module.exports = function() {
-  return {
+  return Promise.all([
+    getChannelURL('release'),
+    getChannelURL('beta'),
+    getChannelURL('canary')
+  ]).then((urls) => {
+    return {
+      useYarn: true,
       scenarios: [
+        {
+          name: 'ember-lts-2.8',
+          bower: {
+            dependencies: {
+              ember: 'components/ember#lts-2-8',
+            },
+            resolutions: {
+              ember: 'lts-2-8',
+            },
+          },
+          npm: {
+            devDependencies: {
+              'ember-source': null,
+            },
+          },
+        },
         {
           name: 'ember-lts-2.18',
           npm: {
-            dependencies: {
-              'ember-source': '~2.18.0'
+            devDependencies: {
+              'ember-source': '~2.18.0',
+              "@ember/jquery": "^0.5.1"
+            }
+          }
+        },
+        {
+          name: 'ember-default',
+          npm: {
+            devDependencies: {}
+          }
+        },
+        {
+          name: 'ember-release',
+          npm: {
+            devDependencies: {
+              'ember-source': urls[0],
+              "@ember/jquery": "^0.6.0"
+            }
+          }
+        },
+        {
+          name: 'ember-beta',
+          npm: {
+            devDependencies: {
+              'ember-source': urls[1],
+              "@ember/jquery": "^0.6.0"
+            }
+          }
+        },
+        {
+          name: 'ember-canary',
+          npm: {
+            devDependencies: {
+              'ember-canary': urls[2],
+              "@ember/jquery": "^0.6.0"
             }
           }
         }
       ]
-  };
+    };
+
+  });
 };
