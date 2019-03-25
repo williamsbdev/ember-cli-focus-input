@@ -21,7 +21,7 @@ env:
 
 branches:
   only:
-    - update_to_latest_lts
+    - master
 
 jobs:
   fail_fast: true
