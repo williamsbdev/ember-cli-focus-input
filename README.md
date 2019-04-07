@@ -10,7 +10,7 @@ first input of your form/page).
 
 ## Why? There's the HTML5 input autofocus attribute!
 
-The HTML5 input autofocus attribute does not work properly for Ember applications. It just lets you specify that a form control should have input focus **when the page loads**. That's why the attribute does not work properly on single page applications (SPA's).
+The HTML5 input autofocus attribute does not work properly for Ember applications. It just lets you specify that a form control should have input focus **when the page loads**. That's why the attribute does not work properly for single page applications (SPA's).
 
 ## Installation
 
