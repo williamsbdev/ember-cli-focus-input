@@ -34,7 +34,7 @@ By default the input will be focused and have the content selected. If you prefe
 
     npm install (or yarn install)
     ember test
-    ember try:each (test again multiple ember versions defined in config/ember-try.js)
+    ember try:each (test against multiple ember versions defined in config/ember-try.js)
 
 ## License
 
