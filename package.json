@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-focus-input",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Components that have focus",
   "scripts": {
     "start": "ember serve",
