@@ -3,9 +3,9 @@
   "version": "2.1.0",
   "description": "Components that have focus",
   "scripts": {
-    "lint:hbs": "ember-template-lint .",
-    "start": "ember server",
+    "start": "ember serve",
     "test": "ember test",
+    "test:all": "ember try:each",
     "build": "ember build"
   },
   "bugs": {
