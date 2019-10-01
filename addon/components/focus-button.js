@@ -4,6 +4,6 @@ export default Component.extend({
     tagName: "button",
     attributeBindings: ["type"],
     didInsertElement: function() {
-        this.$().focus();
+        this.element.addEventListener();
     }
 });
